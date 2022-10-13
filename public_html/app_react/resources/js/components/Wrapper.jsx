@@ -16,8 +16,6 @@ export const Wrapper = (props) => {
             .then(async (response) => {
                 const {data} = await response;
                 setClientSecret(data.client_secret);
-
-                console.log(clientSecret);
             })
             .catch(e => {
                 console.log(e);

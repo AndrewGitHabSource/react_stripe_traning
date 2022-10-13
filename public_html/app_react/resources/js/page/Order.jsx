@@ -9,7 +9,6 @@ export default function Order(props) {
     const elements = useElements();
     const [errorMessage, setErrorMessage] =  useState(null);
 
-
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -26,12 +25,8 @@ export default function Order(props) {
 
         if (result.error) {
             console.log(result.error.message);
-        } else {
-
         }
     }
-
-
 
     return (
         <Layout>
@@ -39,7 +34,6 @@ export default function Order(props) {
 
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
-                {/*<CardElement/>*/}
 
                 <button disabled={!stripe}>Submit</button>
                 {errorMessage && <div>{errorMessage}</div>}
