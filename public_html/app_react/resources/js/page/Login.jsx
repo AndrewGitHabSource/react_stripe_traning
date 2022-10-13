@@ -5,7 +5,7 @@ import { loginUser } from "../helpers/http";
 
 export default function Login(props) {
     let [user, setUser] = useState({
-        'name': '',
+        'login': '',
         'password': '',
     });
 
@@ -27,7 +27,7 @@ export default function Login(props) {
             <form onSubmit={login}>
                 <div className="form-control">
                     <label>Login:</label>
-                    <input type="text" placeholder="Name User" value={user.login || ""} onChange={(e) => setUser({...user, 'login': e.target.value})} />
+                    <input type="text" placeholder="Login User" value={user.login || ""} onChange={(e) => setUser({...user, 'login': e.target.value})} />
                 </div>
 
                 <div className="form-control">
