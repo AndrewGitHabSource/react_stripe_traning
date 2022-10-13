@@ -1,9 +1,7 @@
 import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
-import { getStripeIntent } from '../helpers/http';
 import { useParams } from "react-router-dom";
 import { loginUser } from "../helpers/http";
-
 
 export default function Login(props) {
     let [user, setUser] = useState({
@@ -16,6 +14,7 @@ export default function Login(props) {
 
         try {
             const {data} = await loginUser(user);
+            localStorage.setItem('token', data.token);
         } catch (error) {
             console.log(error);
         }
@@ -25,10 +24,10 @@ export default function Login(props) {
         <Layout>
             <h4>Login</h4>
 
-            <form>
+            <form onSubmit={login}>
                 <div className="form-control">
                     <label>Login:</label>
-                    <input type="text" placeholder="Name User" value={user.login || ""} onChange={(e) => setUser({...user, 'name': e.target.value})} />
+                    <input type="text" placeholder="Name User" value={user.login || ""} onChange={(e) => setUser({...user, 'login': e.target.value})} />
                 </div>
 
                 <div className="form-control">

@@ -8,5 +8,6 @@ export const $http = axios.create({
         "Content-Type": "application/json",
         "X-XSRF-TOKEN": window.Laravel.csrfToken,
         "X-Requested-With": "XMLHttpRequest",
+        "Authorization": localStorage.token,
     }
 });

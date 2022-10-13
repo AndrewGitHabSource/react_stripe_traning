@@ -71,3 +71,9 @@ input {
 .products-list img {
     max-width: 100%;
 }
+
+label {
+    display: block;
+    margin-top: 10px;
+    font: 14px Arial;
+}

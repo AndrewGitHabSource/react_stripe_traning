@@ -32,5 +32,5 @@ export const getStripeIntent = async (user) => {
 }
 
 export const loginUser = async (user) => {
-    return await $http.post('api/user', {user});
+    return await $http.post('api/login', {user});
 }
