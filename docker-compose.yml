@@ -1,0 +1,85 @@
+version: "3.7"
+
+networks:
+  network:
+    driver: bridge
+
+services:
+  php:
+    build: ./docker/php
+    restart: always
+    tty: true
+    container_name: php
+    depends_on:
+      - mysql
+    networks:
+      - network
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www/app.dev
+
+  nginx:
+    build: ./docker/nginx
+    container_name: nginx
+    restart: always
+    tty: true
+    depends_on:
+      - php
+      - mysql
+    ports:
+      - "80:80"
+      - "433:433"
+    volumes:
+      - .:/var/www/app.dev
+    networks:
+      - network
+
+  mysql:
+    build: ./docker/mysql
+    tty: true
+    restart: always
+    container_name: mysql
+    networks:
+      - network
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro"
+      - "./docker/mysql/dbdata:/var/lib/mysql"
+    environment:
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=development
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    depends_on:
+      - mysql
+    networks:
+      - network
+
+  frontend:
+    image: node:current-alpine
+    user: ${UID}:${UID}
+    working_dir: /home/node/app
+    volumes:
+      - ./public_html/app_react:/home/node/app
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: 1
+    command: sh -c "npm install && npm run dev"
+    networks:
+      - network
+    ports:
+      - "3331:3331"
+    tty: true

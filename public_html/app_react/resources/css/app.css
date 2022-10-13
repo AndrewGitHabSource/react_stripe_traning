@@ -1,0 +1,73 @@
+nav a {
+    display: block;
+    color: #1da080;
+    font: 14px Arial;
+    margin-bottom: 4px;
+}
+
+.edit-form {
+    color: #000;
+    font: 14px Arial;
+}
+
+.edit-form label {
+    display: block;
+}
+
+.edit-form input {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #727272;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+    padding: 5px 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input {
+    outline: none;
+}
+
+.user-list {
+    margin-bottom: 20px;
+}
+
+.user-list > div{
+    font: 14px Arial;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-list div div {
+    border: 1px solid #000;
+    width: 33.333%;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.user-list a {
+    color: #1da080;
+    font: 14px Arial;
+    margin-right: 5px;
+}
+
+.view {
+    height: 700px;
+}
+
+.products-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.products-list div.product {
+    width: 20%;
+    border: 1px solid #0c5460;
+    box-sizing: border-box;
+    padding: 5px 5px;
+    margin-bottom: 10px;
+}
+
+.products-list img {
+    max-width: 100%;
+}
