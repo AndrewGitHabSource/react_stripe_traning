@@ -30,3 +30,7 @@ export const editUser = async (user) => {
 export const getStripeIntent = async (user) => {
     return await $http.post('api/order', {user});
 }
+
+export const loginUser = async (user) => {
+    return await $http.post('api/user', {user});
+}

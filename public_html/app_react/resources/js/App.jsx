@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 const Home = React.lazy(() => import('./page/Home'));
 import { Wrapper } from './components/Wrapper';
+import Login from './page/Login';
 
 ReactDOM.createRoot(document.getElementById('app')).render(
     <React.StrictMode>
@@ -15,8 +16,8 @@ ReactDOM.createRoot(document.getElementById('app')).render(
                 <Suspense fallback={<div>Need wait because of loading.......</div>}>
                     <Routes>
                         <Route exact index element={<Home />}/>
-
                         <Route exact path="/order/:id" element={<Wrapper />}/>
+                        <Route exact path="/login" element={<Login />}/>
                     </Routes>
                 </Suspense>
             </HashRouter>

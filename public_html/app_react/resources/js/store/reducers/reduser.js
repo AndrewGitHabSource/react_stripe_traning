@@ -1,26 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    users: [],
-    filter: '',
+    user: {
+        'token': '',
+    },
 }
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        addUser(state, user) {
-            state.users.push(user);
-        },
-        editUser(state, action) {
-            state.users = state.users.filter(item => item.payload.id === action.payload).map((elem) => {
-                elem.payload.name = 'Leo';
-
-                return elem;
-            });
+        login(state, action) {
+            state.user.token = action.payload;
         }
     },
 });
 
-export const { getUsers, addUser, editUser } = userSlice.actions;
+export const { login } = userSlice.actions;
 export const userReducer = userSlice.reducer;
