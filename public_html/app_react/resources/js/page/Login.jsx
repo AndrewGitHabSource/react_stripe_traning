@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { loginUser } from "../helpers/http";
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function Login(props) {
     let [user, setUser] = useState({
@@ -14,6 +15,7 @@ export default function Login(props) {
 
         try {
             const {data} = await loginUser(user);
+
             localStorage.setItem('token', data.token);
         } catch (error) {
             console.log(error);
